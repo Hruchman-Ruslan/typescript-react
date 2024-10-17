@@ -5,13 +5,17 @@ interface ITodos {
 		id: string
 		text: string
 	}[]
+	onDeleteTodo: (id: string) => void
 }
 
-const TodoList: React.FC<ITodos> = ({ items }) => {
+const TodoList: React.FC<ITodos> = ({ items, onDeleteTodo }) => {
 	return (
 		<ul>
 			{items.map(({ id, text }) => (
-				<li key={id}> {text}</li>
+				<li key={id}>
+					<span>{text}</span>
+					<button onClick={onDeleteTodo.bind(null, id)}>DELETE</button>
+				</li>
 			))}
 		</ul>
 	)
